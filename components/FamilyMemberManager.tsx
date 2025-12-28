@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { FamilyMember } from '../types';
 import { addFamilyMember, deleteFamilyMember, getFamilyMembers } from '../db';
@@ -35,56 +34,56 @@ const FamilyMemberManager: React.FC<FamilyMemberManagerProps> = ({ familyId, onC
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-          <h3 className="text-xl font-black text-slate-800">Family Members</h3>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full">✕</button>
+    <div className="fixed inset-0 bg-[#070A14]/90 backdrop-blur-xl z-[200] flex items-center justify-center p-6 animate-in fade-in duration-300">
+      <div className="glass rounded-[48px] border-white/10 w-full max-w-md overflow-hidden shadow-2xl">
+        <div className="p-10 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
+          <h3 className="text-3xl font-black text-white tracking-tighter">Family Units</h3>
+          <button onClick={onClose} className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-xl transition-all text-slate-400 hover:text-white">✕</button>
         </div>
         
-        <div className="p-6 space-y-6">
-          <div className="space-y-3">
+        <div className="p-10 space-y-10 overflow-y-auto max-h-[70vh] custom-scrollbar">
+          <div className="space-y-4">
             {members.map(m => (
-              <div key={m.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
-                <div className="flex items-center space-x-3">
-                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center font-bold text-slate-400 text-xs shadow-sm">
+              <div key={m.id} className="flex items-center justify-between p-5 glass rounded-[24px] border-white/5 hover:border-white/10 transition-all group">
+                <div className="flex items-center space-x-4">
+                   <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center font-black text-slate-400 text-xs shadow-inner group-hover:text-blue-400 transition-colors">
                       {m.name[0]}
                    </div>
                    <div>
-                      <p className="text-sm font-bold text-slate-800">{m.name}</p>
-                      <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest">{m.relationship}</p>
+                      <p className="font-bold text-slate-200 group-hover:text-white">{m.name}</p>
+                      <p className="text-[9px] text-slate-500 uppercase font-black tracking-widest">{m.relationship}</p>
                    </div>
                 </div>
                 {m.relationship !== 'Primary' && (
-                  <button onClick={() => handleDelete(m.id)} className="text-red-300 hover:text-red-500 p-1">🗑️</button>
+                  <button onClick={() => handleDelete(m.id)} className="text-slate-600 hover:text-red-400 p-2 transition-colors">🗑️</button>
                 )}
               </div>
             ))}
           </div>
 
-          <div className="pt-6 border-t border-slate-100 space-y-4">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Add New Member</p>
-            <div className="space-y-3">
+          <div className="pt-10 border-t border-white/5 space-y-6">
+            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Onboard New Unit</p>
+            <div className="space-y-4">
               <input 
                 type="text" 
-                placeholder="Name" 
+                placeholder="Full Legal Name" 
                 value={newName} 
                 onChange={e => setNewName(e.target.value)}
-                className="w-full border p-3 rounded-xl text-sm focus:ring-2 focus:ring-blue-500"
+                className="w-full bg-white/5 border border-white/5 p-5 rounded-2xl text-sm text-white placeholder:text-slate-700 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/30 transition-all outline-none"
               />
               <select 
                 value={newRelation} 
                 onChange={e => setNewRelation(e.target.value)}
-                className="w-full border p-3 rounded-xl text-sm bg-white"
+                className="w-full bg-white/5 border border-white/5 p-5 rounded-2xl text-sm text-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/30 transition-all outline-none appearance-none"
               >
-                <option>Spouse</option>
-                <option>Child</option>
-                <option>Parent</option>
-                <option>Other</option>
+                <option className="bg-navy-950">Spouse</option>
+                <option className="bg-navy-950">Child</option>
+                <option className="bg-navy-950">Parent</option>
+                <option className="bg-navy-950">Other</option>
               </select>
               <button 
                 onClick={handleAdd}
-                className="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-bold hover:bg-slate-800 transition-all shadow-lg"
+                className="w-full bg-blue-600 text-white py-5 rounded-[24px] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 border border-blue-500/30"
               >
                 Add Member
               </button>
