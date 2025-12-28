@@ -1,0 +1,7 @@
+{
+  "name": "Fin-Vault",
+  "description": "A production-grade wealth and insurance management platform with hierarchical RBAC, authorized impersonation, and family-based financial tracking.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
